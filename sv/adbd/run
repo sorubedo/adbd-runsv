@@ -1,7 +1,23 @@
 #!/system/bin/sh
 exec 2>&1
+
 PORT=5555
 [ -r ./conf ] && . ./conf
+settings put global adb_enabled 1
 setprop service.adb.tcp.port "$PORT"
+stop adbd
 start adbd
-while true; do sleep 3600; done
+
+if [ -x /data/adb/magisk/busybox ]; then
+    BUSYBOX=/data/adb/magisk/busybox
+elif [ -x /data/adb/ksu/bin/busybox ]; then
+    BUSYBOX=/data/adb/ksu/bin/busybox
+elif [ -x /data/adb/ap/bin/busybox ]; then
+    BUSYBOX=/data/adb/ap/bin/busybox
+elif command -v busybox >/dev/null 2>&1; then
+    BUSYBOX=busybox
+else
+    while true; do sleep 86400; done
+fi
+
+exec "$BUSYBOX" sleep infinity
