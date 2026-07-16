@@ -1,0 +1,2 @@
+#!/system/bin/sh
+exec svlogd -tt /data/adb/runsvdir/log/sv/adbd

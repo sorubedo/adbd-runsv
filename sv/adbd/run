@@ -1,0 +1,7 @@
+#!/system/bin/sh
+exec 2>&1
+PORT=5555
+[ -r ./conf ] && . ./conf
+setprop service.adb.tcp.port "$PORT"
+start adbd
+while true; do sleep 3600; done

@@ -1,0 +1,6 @@
+id=adbd-runsv
+name=adbd (runsv)
+version=1.0.0
+versionCode=100
+author=runsvdir-magisk
+description=adbd as a runsv service. Edit conf to change port, link via runsvdir WebUI.
